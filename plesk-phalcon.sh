@@ -3,15 +3,25 @@
 
 php_versions=("7.1" "7.2" "7.3" "7.4")
 
-yum install -y git gcc make autoconf re2c
+yum install -y git gcc make autoconf re2c > /dev/null 2>&1
+yum install -y plesk-php71-devel
+yum install -y plesk-php72-devel
+yum install -y plesk-php73-devel
+yum install -y plesk-php74-devel
 
-PHALCON_VERSION="v4.1.2"
-
+echo ">>> Phalcon v4.1.2 kaynak kodu indiriliyor..."
 if [ -d /usr/src/cphalcon ]; then
     rm -rf /usr/src/cphalcon
 fi
 
-git clone --branch ${PHALCON_VERSION} --depth 1 https://github.com/phalcon/cphalcon.git /usr/src/cphalcon
+git clone https://github.com/phalcon/cphalcon.git /usr/src/cphalcon
+cd /usr/src/cphalcon
+git checkout tags/v4.1.2 -b v4.1.2
+
+if [ ! -d /usr/src/cphalcon/build ]; then
+    echo "Phalcon kaynakları dogru sekilde indirilemedi."
+    exit 1
+fi
 
 for ver in "${php_versions[@]}"; do
     php_prefix="/opt/plesk/php/${ver}"
@@ -20,9 +30,9 @@ for ver in "${php_versions[@]}"; do
     php_config="${php_prefix}/bin/php-config"
     
     if [ -x "$php_bin" ] && [ -x "$phpize" ] && [ -x "$php_config" ]; then
-        echo ">>> PHP $ver için Phalcon kuruluyor..."
+        echo ">>> PHP $ver icin Phalcon kuruluyor..."
 
-        cd /usr/src/cphalcon/build
+        cd /usr/src/cphalcon/build || exit
         export PATH="${php_prefix}/bin:$PATH"
         ./install --phpize "$phpize" --php-config "$php_config"
 
@@ -30,11 +40,11 @@ for ver in "${php_versions[@]}"; do
         cp /usr/src/cphalcon/build/64bits/phalcon.so "${modules_dir}/"
         echo "extension=phalcon.so" > "${php_prefix}/etc/php.d/phalcon.ini"
 
-        systemctl restart "plesk-php${ver/./}-fpm"
-        echo "PHP $ver icin Phalcon basariyla yuklendi."
+        systemctl restart "plesk-php${ver/./}-fpm" > /dev/null 2>&1
+        echo ">>> PHP $ver için Phalcon basariyla yuklendi."
     else
-        echo "PHP $ver icin gerekli dosyalar yok, atlaniyor."
+        echo ">>> PHP $ver icin gerekli bilecenler yok, atlaniyor."
     fi
 done
 
-echo -e "Tum uygun PHP 7.x surumleri icin Phalcon kurulumu tamamlandi."
+echo -e "\n>>> ✅ Tüm uygun PHP 7.x sürümleri için Phalcon 4.1.2 kurulumu tamamlandı."
