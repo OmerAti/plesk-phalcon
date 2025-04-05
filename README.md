@@ -27,4 +27,4 @@ Bu otomasyon scripti, Plesk Panel yüklü AlmaLinux 8.x veya CentOS 7 sunucular�
 ```bash
 wget https://raw.githubusercontent.com/OmerAti/plesk-phalcon/refs/heads/main/plesk-phalcon.sh
 chmod +x plesk-phalcon.sh
-bash plesk-phalcon
+bash plesk-phalcon.sh
