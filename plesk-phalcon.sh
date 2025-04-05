@@ -43,8 +43,8 @@ for ver in "${php_versions[@]}"; do
         systemctl restart "plesk-php${ver/./}-fpm" > /dev/null 2>&1
         echo ">>> PHP $ver için Phalcon basariyla yuklendi."
     else
-        echo ">>> PHP $ver icin gerekli bilecenler yok, atlaniyor."
+        echo ">>> PHP $ver icin gerekli bilesenler yok, atlaniyor."
     fi
 done
 
-echo -e "\n>>> ✅ Tüm uygun PHP 7.x sürümleri için Phalcon 4.1.2 kurulumu tamamlandı."
+echo -e "Tum uygun PHP 7.x surumleri icin Phalcon 4.1.2 kurulumu tamamlandi."
