@@ -34,8 +34,15 @@ install_psr() {
   fi
 
 
-  echo "Bagimliliklar yukleniyor..."
-  yum install -y "plesk-php${version}-devel" "plesk-php${version}-pear" >> "${LOG_FILE}" 2>&1
+echo "PHP 7.4 için bağımlılıklar kontrol ediliyor..."
+
+yum install -y "plesk-php7.4-devel" "plesk-php7.4-pear" >> "${LOG_FILE}" 2>&1
+yum install -y git gcc make autoconf re2c >> "${LOG_FILE}" 2>&1
+if [[ $? -ne 0 ]]; then
+  echo "plesk-php7.4-* paketleri bulunamadi, alternatif olarak plesk-php74-* deneniyor..."
+  yum install -y "plesk-php74-devel" "plesk-php74-pear" >> "${LOG_FILE}" 2>&1
+  yum install -y git gcc make autoconf re2c >> "${LOG_FILE}" 2>&1
+fi
 
 
   echo "PECL kanali guncelleniyor..."
