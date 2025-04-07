@@ -131,8 +131,11 @@ fi
 cd /tmp && rm -rf v4.1.2.tar.gz cphalcon-4.1.2
 
 echo "Kurulum tamamlandi"
+echo "Servisler Resetleniyor"
 echo "Detayli log: ${LOG_FILE}"
 echo "Son durum kontrolü:"
+service plesk-php74-fpm restart >> "${LOG_FILE}" 2>&1
+service plesk-php7.4-fpm restart >> "${LOG_FILE}" 2>&1
 
 [ -d "/opt/plesk/php/${version}" ] && \
 echo -n "PHP ${version}: " && \
