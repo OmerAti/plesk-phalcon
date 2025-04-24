@@ -37,6 +37,7 @@ install_psr() {
 echo "PHP 7.4 icin bagimliliklar kontrol ediliyor..."
 
 yum install -y "plesk-php7.4-devel" "plesk-php7.4-pear" >> "${LOG_FILE}" 2>&1
+yum install -y "plesk-php74-devel" "plesk-php74-pear" >> "${LOG_FILE}" 2>&1
 yum install -y git gcc make autoconf re2c >> "${LOG_FILE}" 2>&1
 if [[ $? -ne 0 ]]; then
   echo "plesk-php7.4-* paketleri bulunamadi, alternatif olarak plesk-php74-* deneniyor..."
