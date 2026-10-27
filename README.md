@@ -1,8 +1,8 @@
-# 🚀 Phalcon 4.x Kurulumu - Plesk + AlmaLinux/CentOS
+# 🚀 Phalcon 4.x ve 5x Kurulumu - Plesk + AlmaLinux/CentOS
 
 ## 📋 Proje Açıklaması
 
-Bu otomasyon scripti, Plesk Panel yüklü AlmaLinux 8.x veya CentOS 7 sunucularında PHP 7.4 sürümleri için Phalcon PHP framework 4.x sürümünün kurulumunu gerçekleştirir.
+Bu otomasyon scripti, Plesk Panel yüklü AlmaLinux 8.x veya CentOS 7 sunucularında PHP 7.4 sürümleri için Phalcon PHP framework 4.x ve Php 8x e 5x sürümünün kurulumunu gerçekleştirir.
 
 ## ✨ Temel Özellikler
 
@@ -19,7 +19,7 @@ Bu otomasyon scripti, Plesk Panel yüklü AlmaLinux 8.x veya CentOS 7 sunucular�
 | Plesk Panel | Obsidian 18.0+ |
 | Disk Alanı | 500MB boş alan |
 | RAM | 1GB (2GB önerilir) |
-| PHP Versiyonları | 7.4 |
+| PHP Versiyonları | 7.4 | 8.4 |
 
 ## 🚀 Kurulum Kılavuzu
 
